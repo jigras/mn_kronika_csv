@@ -17,8 +17,18 @@ polish_char_dict = {
     b'E\x02': b'\xc5\x82',
     b'E\x03': b'\xc5\x83',
     b'E\x04': b'\xc5\x84',
+    b'D\x04': b'\xc4\x84',
+    b'D\x05': b'\xc4\x85',
+    b'D\x06': b'\xc4\x86',
     b'D\x07': b'\xc4\x87',
     b'D\x08': b'\xc4\x88',
+    b'D\x18': b'\xc4\x98',
+    b'oL\x01': b'\xc3\xb3',
+    b'L(\xc5\x82':b'\xc5\x82',
+    b'zL\x07':b'\xc5\xbc',
+    b'eL(':b'\xc4\x99',
+    b'aL(':b'\xc4\x85'
+
 }
 
 czech_char_dict = {
@@ -33,6 +43,7 @@ latin_char_dict = {
     b'C<': b'\xc3\xbc',
     b'C>': b'\xc3\xbe',
     b'C\x06': b'\xc3\x86',
+    b'C\x13': b'\xc3\x93',
     b'C\x16': b'\xc3\x96',
     b'aL\x08': b'a\xcc\x88',
 }
@@ -86,4 +97,6 @@ corrupted_char ={
     b'aL\n': b'a\xcc\x88'
 }
 
+
+print('ą'.encode('UTF-8'))
 
