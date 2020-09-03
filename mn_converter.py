@@ -9,8 +9,8 @@ from char_dictionaries import polish_char_dict, czech_char_dict, latin_char_dict
 def re_encode(byte_conv, conv_dict):
     """
     Converts characters in the supplied bytes specified in dictionary keys with values from the dictionary
-    :param byte_onv:
-    :param conv_dict:
+    :param byte_conv: bytes to convert
+    :param conv_dict: dictionairy with chars to convert
     :return: byte
     """
     for key in conv_dict.keys():
@@ -21,8 +21,8 @@ def re_encode(byte_conv, conv_dict):
 def csv_converter(filepath):
     """
     Converts corrupted csv from National Museum Kraków to UTF-8 comma separated csv file
-    :param filepath: str
-    :return:
+    :param filepath: Input filepath
+    :return: None
     """
     error_counter = 0
     all_dicts = {**polish_char_dict,
