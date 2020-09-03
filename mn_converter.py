@@ -42,7 +42,9 @@ def csv_converter(filepath):
     :param filepath: Input filepath
     :return: None
     """
+    file_output = 'csv_encoded.csv'
     error_counter = 0
+    row_converted = 0
     all_dicts = {**polish_char_dict,
                  **special_char_dict,
                  **redundant_char,
@@ -50,6 +52,8 @@ def csv_converter(filepath):
                  **czech_char_dict,
                  **latin_char_dict
                  }
+
+    show_input(filepath)
 
     with open(filepath, 'rb') as csv_file:
         temp_byte = b''
@@ -67,12 +71,27 @@ def csv_converter(filepath):
             csv_file_io = StringIO(repaired_string)
             csv_reader = csv.reader(csv_file_io, delimiter=';')
             saved = write_line_to_csv(list(csv_reader)[0])
-            if not saved:
+            if saved:
+                row_converted += 1
+            else:
                 error_counter += 1
+    show_result(row_converted, error_counter,file_output)
+
+
+def show_result(row_converted, error_counter,file_output):
+    print('Script ended')
+    print('Row converted: {}'.format(row_converted))
+    print('----')
+    print('File saved to: {}'.format(file_output))
+    print('----')
 
     if error_counter:
         print('{} Errors'.format(error_counter))
 
+def show_input(filepath):
+    print('----')
+    print('File to convert: {}'.format(filepath))
+    print('----')
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Convert corrupted csv from MN Krakow')
