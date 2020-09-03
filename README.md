@@ -13,3 +13,9 @@ python mn_converter.py -i filepath
 Przykładowa ścieżka do pliku csv : /home/file.csv
 
 Plik wejsciowy rozdzielony średnikami
+
+Domyślna nazwa pliku wyjściowego csv_encoded.csv
+
+## Wymagania
+
+Python 3.5+
