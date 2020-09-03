@@ -18,6 +18,24 @@ def re_encode(byte_conv, conv_dict):
     return byte_conv
 
 
+def write_line_to_csv(line_to_add):
+    """
+    Write line to csv
+    :param line_to_add: line to add
+    :return: bool
+    """
+
+    saved = True
+    with open('csv_encoded.csv', 'a') as new_file:
+        csv_writer = csv.writer(new_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+        try:
+            csv_writer.writerow(line_to_add)
+        except csv.Error as e:
+            print(e)
+            saved = False
+    return saved
+
+
 def csv_converter(filepath):
     """
     Converts corrupted csv from National Museum Kraków to UTF-8 comma separated csv file
@@ -38,7 +56,7 @@ def csv_converter(filepath):
         csv_lines = csv_file.readlines()
         for i, value in enumerate(csv_lines):
             repaired_bin = re_encode(value, all_dicts)
-            # when ä occurs it
+            # when ä occurs (aL\n)
             if repaired_bin.find(b'aL\n') != -1:
                 temp_byte = re_encode(repaired_bin, corrupted_char)
                 continue
@@ -48,16 +66,13 @@ def csv_converter(filepath):
             repaired_string = repaired_bin.decode('UTF-8')
             csv_file_io = StringIO(repaired_string)
             csv_reader = csv.reader(csv_file_io, delimiter=';')
-            with open('csv_encoded.csv', 'a') as new_file:
-                csv_writer = csv.writer(new_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-                try:
-                    csv_writer.writerow(list(csv_reader)[0])
-                except csv.Error as e:
-                    print(e)
-                    error_counter += 1
+            saved = write_line_to_csv(list(csv_reader)[0])
+            if not saved:
+                error_counter += 1
 
     if error_counter:
         print('{} Errors'.format(error_counter))
+
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Convert corrupted csv from MN Krakow')
