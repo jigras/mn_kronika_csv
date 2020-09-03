@@ -48,7 +48,7 @@ def stream_lines(file_path):
     """
     Splits file into smaller parts, yields file lines
     :param file_name: filepath
-    :return: bytes
+    :return: generator object
     """
     file = open(file_path, 'rb')
     while True:
@@ -113,7 +113,6 @@ if __name__ == '__main__':
     parser.add_argument("-i", "--input", help="Path of input file")
 
     args = parser.parse_args()
-
     if args.input:
         csv_converter(args.input)
 
