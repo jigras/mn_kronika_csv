@@ -9,6 +9,6 @@ Skrypt ma zadanie przekonwertować plik csv z zbiorów MN Kraków do postaci pop
 python mn_converter.py -i filepath
 ``
 
-Przykładowa ścieżka /home/file.csv
+Przykładowa ścieżka do pliku csv : /home/file.csv
 
 
