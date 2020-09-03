@@ -3,8 +3,8 @@ import csv
 import argparse
 from io import StringIO
 
-from char_dictionaries import polish_char_dict, czech_char_dict, latin_char_dict, special_char_dict, redundant_char, \
-    cyrillic_char_dict, corrupted_char
+from char_dictionaries import polish_char_dict, czech_char_dict, latin_char_dict, \
+    special_char_dict, redundant_char, cyrillic_char_dict, corrupted_char
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
@@ -17,7 +17,8 @@ logger.addHandler(logging.StreamHandler())
 
 def re_encode(byte_conv, conv_dict):
     """
-    Converts characters in the supplied bytes specified in dictionary keys with values from the dictionary
+    Converts characters in the supplied bytes specified in dictionary keys with values
+    from the dictionary
     :param byte_conv: bytes to convert
     :param conv_dict: dictionairy with chars to convert
     :return: byte
@@ -35,7 +36,10 @@ def write_line_to_csv(line_to_add):
     """
     saved = True
     with open('csv_encoded.csv', 'a') as new_file:
-        csv_writer = csv.writer(new_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+        csv_writer = csv.writer(new_file,
+                                delimiter=',',
+                                quotechar='"',
+                                quoting=csv.QUOTE_MINIMAL)
         try:
             csv_writer.writerow(line_to_add)
         except csv.Error as e:
@@ -118,4 +122,3 @@ if __name__ == '__main__':
     args = parser.parse_args()
     if args.input:
         csv_converter(args.input)
-
