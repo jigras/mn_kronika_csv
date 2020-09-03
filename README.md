@@ -1,9 +1,14 @@
-# CSV repair for MN Krakow - Kronika
+# CSV repair  MN Krakow - Kronika
 
-## Usage
+## Opis
+Skrypt ma zadanie przekonwertować plik csv z zbiorów MN Kraków do postaci poprawnego csv w kodowaniu UTF-8 
+
+## Użycie
 
 ``
 python mn_converter.py -i filepath
 ``
 
-Example filepath /home/file.csv
+Przykładowa ścieżka /home/file.csv
+
+
