@@ -28,14 +28,15 @@ def re_encode(byte_conv, conv_dict):
     return byte_conv
 
 
-def write_line_to_csv(line_to_add):
+def write_line_to_csv(line_to_add, file_output):
     """
     Write line to csv
     :param line_to_add: line to add
+    :param file_output: name of output file
     :return: bool
     """
     saved = True
-    with open('csv_encoded.csv', 'a') as new_file:
+    with open(file_output, 'a') as new_file:
         csv_writer = csv.writer(new_file,
                                 delimiter=',',
                                 quotechar='"',
@@ -61,6 +62,21 @@ def stream_lines(file_path):
             file.close()
             break
         yield line
+
+
+def show_result(row_converted, error_counter, file_output):
+    """
+    Logs end of script
+    :param row_converted: number of row converted
+    :param error_counter: number of error while converting
+    :param file_output: file output name
+    :return: None
+    """
+    logger.info('Script ended')
+    logger.info('Row converted: {}'.format(row_converted))
+    logger.info('File saved to: {}'.format(file_output))
+    if error_counter:
+        logger.error('{} Errors - check log file'.format(error_counter))
 
 
 def csv_converter(filepath):
@@ -95,7 +111,7 @@ def csv_converter(filepath):
         csv_file_io = StringIO(repaired_string)
         csv_reader = csv.reader(csv_file_io, delimiter=';')
         csv_row = list(csv_reader)[0]
-        saved = write_line_to_csv(csv_row)
+        saved = write_line_to_csv(csv_row, file_output)
         if saved:
             row_converted += 1
         else:
@@ -104,20 +120,9 @@ def csv_converter(filepath):
     show_result(row_converted, error_counter, file_output)
 
 
-def show_result(row_converted, error_counter, file_output):
-    """
-    Logs end of script
-    """
-    logger.info('Script ended')
-    logger.info('Row converted: {}'.format(row_converted))
-    logger.info('File saved to: {}'.format(file_output))
-    if error_counter:
-        logger.error('{} Errors - check log file'.format(error_counter))
-
-
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Convert corrupted csv from MN Krakow')
-    parser.add_argument("-i", "--input", help="Path of input file")
+    parser.add_argument("-i", "--input", help="Path of input file", required=True)
 
     args = parser.parse_args()
     if args.input:
