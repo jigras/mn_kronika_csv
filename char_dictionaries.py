@@ -96,7 +96,3 @@ cyrilic_char_dict = {
 corrupted_char ={
     b'aL\n': b'a\xcc\x88'
 }
-
-
-print('ą'.encode('UTF-8'))
-
