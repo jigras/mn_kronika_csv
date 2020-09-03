@@ -36,7 +36,7 @@ def write_line_to_csv(line_to_add, file_output):
     :return: bool
     """
     saved = True
-    with open(file_output, 'a') as new_file:
+    with open(file_output, 'a', encoding='UTF-8') as new_file:
         csv_writer = csv.writer(new_file,
                                 delimiter=',',
                                 quotechar='"',
