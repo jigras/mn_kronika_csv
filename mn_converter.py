@@ -1,5 +1,7 @@
 import csv
+import argparse
 from io import StringIO
+
 from char_dictionaries import polish_char_dict, czech_char_dict, latin_char_dict, special_char_dict, redundant_char, \
     cyrilic_char_dict, corrupted_char
 
@@ -57,5 +59,11 @@ def csv_converter(filepath):
     if error_counter:
         print('{} Errors'.format(error_counter))
 
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='Convert corrupted csv from MN Krakow')
+    parser.add_argument("-i", "--input", help="Path of input file")
 
-csv_converter('file.csv')
+    args = parser.parse_args()
+
+    if args.input:
+        csv_converter(args.input)
