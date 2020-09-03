@@ -4,7 +4,7 @@ import argparse
 from io import StringIO
 
 from char_dictionaries import polish_char_dict, czech_char_dict, latin_char_dict, special_char_dict, redundant_char, \
-    cyrilic_char_dict, corrupted_char
+    cyrillic_char_dict, corrupted_char
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
@@ -71,7 +71,7 @@ def csv_converter(filepath):
     all_dicts = {**polish_char_dict,
                  **special_char_dict,
                  **redundant_char,
-                 **cyrilic_char_dict,
+                 **cyrillic_char_dict,
                  **czech_char_dict,
                  **latin_char_dict
                  }
@@ -101,6 +101,9 @@ def csv_converter(filepath):
 
 
 def show_result(row_converted, error_counter, file_output):
+    """
+    Logs end of script
+    """
     logger.info('Script ended')
     logger.info('Row converted: {}'.format(row_converted))
     logger.info('File saved to: {}'.format(file_output))

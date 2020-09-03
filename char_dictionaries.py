@@ -65,7 +65,7 @@ redundant_char = {
     b'o;?': b''
 }
 
-cyrilic_char_dict = {
+cyrillic_char_dict = {
     b'Q\x00': b'\xd1\x80',
     b'Q\x01': b'\xd1\x81',
     b'Q\x02': b'\xd1\x82',
